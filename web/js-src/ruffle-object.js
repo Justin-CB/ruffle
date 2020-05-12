@@ -49,6 +49,22 @@ export default class RuffleObject extends RufflePlayer {
             }
         }
         if (
+            elem.parentElement && 
+            elem.parentElement.tagName == "object"
+        ) {
+        /* Only polyfill top-level objects */
+            let params = elem.getElementsByTagName("param");
+            for (let i = 0;i < params.length;i ++) {
+                if (params[i].name == "movie") {
+                    params[i].parentElement.removeChild(params[i]);
+                }
+                /* Remove movie param */
+            }
+            elem.data = "";
+            /* Set data to empty */
+            return false;
+        }
+        if (
             elem.type === FLASH_MIMETYPE ||
             elem.type === FUTURESPLASH_MIMETYPE ||
             elem.type == FLASH7_AND_8_MIMETYPE ||

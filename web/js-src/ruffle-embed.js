@@ -45,6 +45,15 @@ export default class RuffleEmbed extends RufflePlayer {
             return false;
         }
         if (
+            elem.parentElement &&
+            elem.parentElement.tagName == "object"
+        ) {
+        /* Only polyfill top-level objects */
+            elem.src = "";
+            /* Set src to empty */
+            return false;
+        }
+        if (
             elem.type === FLASH_MIMETYPE ||
             elem.type === FUTURESPLASH_MIMETYPE ||
             elem.type == FLASH7_AND_8_MIMETYPE ||
