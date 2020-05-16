@@ -58,27 +58,26 @@ export default class RuffleObject extends RufflePlayer {
         ) {
             /* Only polyfill top-level objects */
             let children = elem.getElementsByTagName("*");
-            for (let i = 0;i < children.length; i ++) {
+            for (let i = 0; i < children.length; i++) {
                 if (
                     children[i].tagName.toLowerCase() == "param" &&
                     children[i].name == "movie"
                 ) {
                     /* Remove movie param */
                     children[i].parentElement.removeChild(children[i]);
-                }
-                else if (children[i].tagName.toLowerCase() != "param") {
+                } else if (children[i].tagName.toLowerCase() != "param") {
                     /* Hide fallback content */
-                    children[i].style.setProperty("display", "none", "important");
+                    children[i].style.setProperty(
+                        "display",
+                        "none",
+                        "important"
+                    );
                 }
             }
             if (elem.hasAttribute("data")) {
                 elem.removeAttribute("data");
             }
-            elem.style.setProperty(
-                "display",
-                "none",
-                "important"
-            );
+            elem.style.setProperty("display", "none", "important");
             return false;
         }
         if (!elem.data) {
