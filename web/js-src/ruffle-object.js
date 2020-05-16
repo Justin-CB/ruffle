@@ -101,8 +101,10 @@ export default class RuffleObject extends RufflePlayer {
         ) {
             return true;
         } else if (
-            elem.attributes && elem.attributes.classid &&
-            elem.attributes.classid.value.toLowerCase() === FLASH_ACTIVEX_CLASSID.toLowerCase()
+            elem.attributes &&
+            elem.attributes.classid &&
+            elem.attributes.classid.value.toLowerCase() ===
+                FLASH_ACTIVEX_CLASSID.toLowerCase()
         ) {
             return true;
         } else if (
@@ -112,17 +114,15 @@ export default class RuffleObject extends RufflePlayer {
             let params = RuffleObject.params_of(elem);
             if (params && params.movie && is_swf_filename(params.movie)) {
                 return true;
-            }
-            else if (elem.data && is_swf_filename(elem.data)) {
+            } else if (elem.data && is_swf_filename(elem.data)) {
                 return true;
-            }
-            else {
+            } else {
                 /* Note: flash fallbacks inside of non-flash objects don't work */
                 return false;
             }
         }
         /* Note: flash fallbacks inside of non-flash objects don't work
-*/
+         */
         return false;
     }
 
@@ -148,7 +148,7 @@ export default class RuffleObject extends RufflePlayer {
         ruffle_obj.copy_element(elem);
         ruffle_obj.original = elem;
         /* Set original for detecting if original is (re)moved */
-        for (let i = 0; i < params.length; i ++) {
+        for (let i = 0; i < params.length; i++) {
             if (params[i].name == "movie") {
                 params[i].parentElement.removeChild(params[i]);
             }

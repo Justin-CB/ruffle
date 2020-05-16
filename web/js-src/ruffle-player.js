@@ -212,7 +212,8 @@ export class RufflePlayer extends HTMLElement {
                 if (
                     node.tagName.toLowerCase() != "object" &&
                     node.tagName.toLowerCase() != "embed" &&
-                    node.parentElement.parentElement.tagName.toLowerCase() != "object"
+                    node.parentElement.parentElement.tagName.toLowerCase() !=
+                        "object"
                 ) {
                     this.appendChild(node);
                 } else {
@@ -244,7 +245,7 @@ export class RufflePlayer extends HTMLElement {
     }
 
     static handle_player_changes(players) {
-        for (let i = 0; i < players.length; i ++) {
+        for (let i = 0; i < players.length; i++) {
             if (players[i].parentElement.contains(players[i].original)) {
                 /* Original is still there */
                 continue;
@@ -255,8 +256,7 @@ export class RufflePlayer extends HTMLElement {
                     "beforebegin",
                     players[i]
                 );
-            }
-            else {
+            } else {
                 console.log("Player removed");
                 players[i].parentElement.removeChild(players[i]);
             }
